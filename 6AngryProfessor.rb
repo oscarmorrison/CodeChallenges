@@ -26,9 +26,9 @@ t = gets.to_i
 
 	#process
 	on_time = 0
-	i = 0
+#	i = 0
 	arrival_times.each do |a|
-		on_time += 1 if a.to_i >= 0 
+		on_time += 1 if a.to_i <= 0 
 	end
 
 	#output
@@ -39,3 +39,19 @@ t = gets.to_i
 		puts "YES"
 	end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
