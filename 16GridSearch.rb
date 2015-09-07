@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+#Find if a small-grid (matrix) is a sub-grid of a bigger grid
 def check_pattern(grid, pattern, r, c, pr, pc)
 	for j in (0...pr)
 		for i in (0...pc)
