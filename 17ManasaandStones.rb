@@ -1,14 +1,24 @@
-#!/usr/bin/ruby
+def calc_minosa(n,a,b)
+	if a > b 
+		temp = b
+		b = a
+		a = temp
+	end
+	array = []
+	for i in (0...n)
+		output =  a*(n - i - 1) + b*(i)
+		unless array.include? output
+			print "#{output} "
+			array<<output
+		end
+	end
+	puts
+end
 
-first_stone = 0
-a = 1
-b = 2
-n = 3
-possibilities = 2**(n-1)
-
-puts possibilities
-
-
-for i in (0...n)
-	puts i
+t = gets.chomp.to_i
+t.times do 
+	n = gets.chomp.to_i
+	a = gets.chomp.to_i
+	b = gets.chomp.to_i
+	calc_minosa(n,a,b)
 end
