@@ -7,21 +7,43 @@ def print_matrix(matrix)
 	puts
 end
 				
+#				s_i = 0 
+#				s_j = 0 
+#				m = 3
+#				n = 3 
+
 def rotate_matrix(matrix,s_i,s_j,m,n)
 	rotated = matrix.inject([]) { |a,element| a << element.dup }
 	for i in (s_i...m)
 		for j in (s_j...n)
 			case [i,j]
 				# Move items on corners
+				#Top Left Corner
 				when [s_i,s_j]
 					rotated[i+1][j] = matrix[i][j]
+				#Bottom Left Corner
 				when [m-1,s_j]
 					rotated[i][j+1] = matrix[i][j]
+				#Bottom Right Corner
 				when [m-1,n-1]
 					rotated[i-1][j] = matrix[i][j]
+				#Top Right Corner
 				when [s_i,n-1]
 					rotated[i][j-1] = matrix[i][j]
+				##################	
 				# Move other items
+				# Top Row
+				when proc{|i,j| i == s_i and j>0 }
+					rotated[i][j-1] = matrix[i][j]
+				# Bottom Row
+				when proc{|i,j| i == m-1}
+					rotated[i][j+1] = matrix[i][j]
+				# Left Column
+				when proc{|i,j| i >= 0 and j == s_j}
+					rotated[i+1][j] = matrix[i][j]
+				# Right Column
+				when proc{|i,j| i >= 0 and j == n-1}
+				rotated[i-1][j] = matrix[i][j]
 				
 			end
 		end
