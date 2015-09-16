@@ -1,18 +1,15 @@
 #!/usr/bin/ruby
 def print_matrix(matrix)
 	matrix.each do |a|
-		print a
-		puts
+		a.each do |n|
+			print "#{n} "
+		end
+		puts 
 	end
 	puts
 end
-				
-#				s_i = 0 
-#				s_j = 0 
-#				m = 3
-#				n = 3 
 
-def rotate_matrix(matrix,s_i,s_j,m,n)
+def rotate_ring(matrix,s_i,s_j,m,n)
 	rotated = matrix.inject([]) { |a,element| a << element.dup }
 	for i in (s_i...m)
 		for j in (s_j...n)
@@ -51,20 +48,53 @@ def rotate_matrix(matrix,s_i,s_j,m,n)
 	return rotated
 end
 
+def rotate_matrix(matrix,m,n,r)
+	s_i = 0
+	s_j = 0
+	min = ([m,n].min)/2
+	r.times do
+		for t in 0...min
+			matrix = rotate_ring(matrix,0+t,0+t,m-t,n-t)
+		end
+	end
+	return matrix
+end
+
+def get_matrix(m)
+	matrix = []
+	m.times do
+		line = gets.chomp.split(" ").map{|n|n.to_i}
+		matrix<<line
+	end
+	return matrix
+end
 
 #matrix = [['a','b'],
 #					['c','d']]
-matrix = [['a','b','c'],
-					['e','f','g'],
-					['i','j','k']]
+#matrix = [['a','b','c'],
+#					['e','f','g'],
+#					['i','j','k']]
 
 #matrix = [['a','b','c','d'],
 #					['e','f','g','h'],
 #					['i','j','k','l'],
-#					['m','n','o','p']	]					
+#					['m','n','o','p']	]
+#					
+matrix = [['a','b','c','d'],
+					['e','f','g','h'],
+					['i','j','k','l'],
+					['m','n','o','p'],	
+					['q','r','s','t']]
 
 m = matrix.size
 n = matrix[0].size
 
 print_matrix(matrix)
-print_matrix(rotate_matrix(matrix,0,0,m,n))
+print_matrix(rotate_matrix(matrix,m,n,1))
+
+
+
+#m,n,r = gets.chomp.split(" ").map{|n|n.to_i}
+#print_matrix(rotate_matrix(get_matrix(m),m,n,r))
+
+
