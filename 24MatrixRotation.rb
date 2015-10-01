@@ -52,7 +52,9 @@ def rotate_matrix(matrix,m,n,r)
 	s_i = 0
 	s_j = 0
 	min = ([m,n].min)/2
-	r.times do
+	k = 2*n+2*(m-2)-1
+	k = r%k
+	k.times do
 		for t in 0...min
 			matrix = rotate_ring(matrix,0+t,0+t,m-t,n-t)
 		end
@@ -90,7 +92,7 @@ m = matrix.size
 n = matrix[0].size
 
 print_matrix(matrix)
-print_matrix(rotate_matrix(matrix,m,n,1))
+print_matrix(rotate_matrix(matrix,m,n,14))
 
 
 
